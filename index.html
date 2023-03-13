@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    .fu-container {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .fu-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: url('./bg.jpg');
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
+      background-position: center;
+      width: 100vw;
+      height: 100vh;
+      -webkit-transform: scaleX(-1);
+      transform: scaleX(-1);
+      z-index: -1;
+      /* box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.4); */
+    }
+    .fu-mainbox {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: flex-end;
+    }
+    .fu-box {
+      width: 95%;
+      margin-right: 2.5%;
+      max-width: 560px;
+      border-radius: 25px;
+      display: flex;
+      flex-direction: column;
+      min-height: 360px;
+      box-shadow: 0px 2px 2px 0px #777;
+      position: relative;
+      background-color: white;
+      align-self: flex-end;
+      /* padding: 15px; */
+      /* margin: 0 25px; */
+    }
+    body {
+      margin: 0;
+      padding: 0;
+    }
+    @media screen and (max-width: 600px) {
+      .fu-titlebox {
+        width: 100%;
+        max-width: 560px;
+        line-height: 42px;
+        margin-right: calc(2.5% + 20px);
+      }
+      .fu-title-1 {
+        font-weight: bold;
+        font-size: 32px;
+        color: #e67e22;
+        padding: 0;
+        margin: 0;
+        font-family: 'Kanit', sans-serif;
+        margin-bottom: 8px;
+        text-align: end;
+      }
+      .fu-title-2 {
+        font-weight: bold;
+        font-size: 40px;
+        color: #333;
+        padding: 0;
+        margin: 0;
+        font-family: 'Kanit', sans-serif;
+        text-align: end;
+      }
+      .fu-minutes {
+        font-size: 85px;
+        color: #e67e22;
+      }
+      .fu-form-title {
+        font-size: 20px;
+        font-family: 'Kanit', sans-serif;
+        font-weight: 500;
+        text-align: center;
+        padding: 0;
+        margin: 10px 0 0 0;
+      }
+      .fu-form-title-2 {
+        font-size: 18px;
+        font-family: 'Kanit', sans-serif;
+        font-weight: 400;
+        text-align: center;
+        padding: 0;
+        margin: 0;
+      }
+      .fu-form-container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+      }
+      .fu-half {
+        display: flex;
+        flex: 1;
+        justify-items: center;
+      }
+      .fu-label {
+        margin-left: calc(7% - 10px);
+      }
+      .fu-input {
+        width: 86%;
+        margin-top: 10px;
+        margin-left: calc(7% - 10px);
+        padding: 14px 5px;
+        border-radius: 10px;
+        /* box-shadow: red; */
+        box-sizing: border-box;
+        border: 3px solid #ccc;
+        -webkit-transition: 0.5s;
+        transition: 0.5s;
+        outline: none;
+      }
+      .fu-input:focus {
+        border: 3px solid #f39c12;
+      }
+    }
+    @media screen and (min-width: 601px) {
+      .fu-titlebox {
+        width: 100%;
+        max-width: 580px;
+        line-height: 54px;
+        margin-right: calc(2.5% + 20px);
+      }
+      .fu-title-1 {
+        font-weight: bold;
+        font-size: 52px;
+        color: #e67e22;
+        padding: 0;
+        margin: 0;
+        font-family: 'Kanit', sans-serif;
+        margin-bottom: 20px;
+        text-align: end;
+      }
+      .fu-title-2 {
+        font-weight: bold;
+        font-size: 60px;
+        color: #333;
+        padding: 0;
+        margin: 0;
+        font-family: 'Kanit', sans-serif;
+        text-align: end;
+      }
+      .fu-minutes {
+        font-size: 130px;
+        color: #e67e22;
+      }
+      .fu-form-title {
+        font-size: 30px;
+        font-family: 'Kanit', sans-serif;
+        font-weight: 500;
+        text-align: center;
+        padding: 0;
+        margin: 10px 0 0 0;
+      }
+      .fu-form-title-2 {
+        font-size: 22px;
+        font-family: 'Kanit', sans-serif;
+        font-weight: 400;
+        text-align: center;
+        padding: 0;
+        margin: 0;
+      }
+      .fu-form-container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 100%;
+      }
+      .fu-half {
+        display: flex;
+        flex: 1;
+      }
+      .fu-label {
+        font-weight: 400;
+        font-family: 'Kanit', sans-serif;
+        margin-left: 5%;
+      }
+      .fu-input {
+        width: 90%;
+        margin-top: 10px;
+        padding: 14px 8px;
+        border-radius: 10px;
+        /* box-shadow: red; */
+        box-sizing: border-box;
+        border: 3px solid #ccc;
+        -webkit-transition: 0.5s;
+        transition: 0.5s;
+        outline: none;
+        margin-left: 5%;
+        font-weight: 400;
+        font-family: 'Kanit', sans-serif;
+      }
+      .fu-input:focus {
+        border: 3px solid #f39c12;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="fu-container">
+    <div class="fu-bg"></div>
+    <div class="fu-mainbox">
+      <div class="fu-titlebox">
+        <h2 class="fu-title-2">ภายใน <span class="fu-minutes">10</span> นาที</h2>
+        <h2 class="fu-title-1">ขายรถ <span style="color: #333">&</span> ประเมินราคา</h2>
+      </div>
+      <div class="fu-box">
+        <h3 class="fu-form-title">แพลตฟอร์มตัวกลางซื้อ-ขายรถมือสอง</h3>
+        <h4 class="fu-form-title-2">ประเมินราคา ฟรี! ได้ราคาสูง</h4>
+        <div class="fu-form-container">
+          <div style="margin-top: 24px" class="fu-half">
+            <div style="width: 100%;">
+              <label class="fu-label" for="fu-name">ชื่อ-นามสกุล</label><br />
+              <input class="fu-input" id="fu-name" placeholder="ชื่อ-นามสกุล" />
+            </div>
+          </div>
+          <div style="margin-top: 24px" class="fu-half">
+            <div style="width: 100%;">
+              <label class="fu-label" for="fu-phonenumber">เบอร์โทร</label><br />
+              <input class="fu-input" id="fu-phonenumber" placeholder="เบอร์โทร" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
