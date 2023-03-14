@@ -48,12 +48,35 @@ b.addEventListener('click', () => {
   const _phonenumber = phonenumber()
   const _cartype = cartype()
   const _moredetail = moredetail()
+  const formdata = new FormData()
 
-  // send line notify
-  alert('send line noti fy')
-  // reset
-  _name.value = ''
-  _phonenumber.value = ''
-  _moredetail.value = ''
-  _cartype.selectedIndex = 0
+  const url = 'https://notify-api.line.me/api/notify'
+  const token = '82W9SWtkvTYmC5swBlUd6HAoYKxiYqKNCxoK5kWSVym'
+  formdata.append('message', `\nชื่อ: ${_name.value}\nโทร: ${_phonenumber.value}\nรุ่นรถยนต์: ${_cartype.value}\nรายละเอียดเพิ่มเติม: ${_moredetail.value}`)
+
+  var xhr = new XMLHttpRequest()
+  xhr.open('POST', url)
+  xhr.setRequestHeader('Authorization', 'Bearer ' + token)
+  xhr.onload = function() {
+    if (xhr.status === 200) {
+      _name.value = ''
+      _phonenumber.value = ''
+      _moredetail.value = ''
+      _cartype.selectedIndex = 0
+      Swal.fire({
+        icon: 'success',
+        title: 'ส่งข้อความสำเร็จ',
+        text: 'ทีม Support จะรีบติดต่อคุณกลับภายใน 10 นาที',
+        confirmButtonColor: '#f39c12',
+      })
+    } else {
+      console.log('fail to call line notify e:', xhr.statusText)
+      Swal.fire({
+        icon: 'error',
+        title: 'ผิดพลาด',
+        text: 'ไม่สามารถส่งข้อความได้ โปรดลองใหม่ภายหลัง',
+      })
+    }
+  }
+  xhr.send(formdata)
 })
