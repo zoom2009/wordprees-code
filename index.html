@@ -441,6 +441,8 @@
   <!-- NOTI LINE -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script>
+    // ชื่อระบบ
+    const systemName = 'App รถมือสอง'
     // สี theme
     const titleColor1 = "green"
     const titleColor2 = "red"
@@ -588,18 +590,17 @@
         !!(_cartype.value || '') &&
         !!(_moredetail.value || '')
       ) {
-        const message = `++ชื่อ: ${_name.value}++ความต้องการ: ${actionTypeSelected}++โทร: ${_phonenumber.value}++รุ่นรถยนต์: ${_cartype.value}++รายละเอียดเพิ่มเติม: ${_moredetail.value}`
-        alert('success')
-        // Swal.fire({
-        //   title: 'กำลังส่งข้อความ',
-        //   didOpen: () => { Swal.showLoading() },
-        // })
+        const message = `++ระบบ: ${systemName}++ชื่อ: ${_name.value}++ความต้องการ: ${actionTypeSelected}++โทร: ${_phonenumber.value}++รุ่นรถยนต์: ${_cartype.value}++รายละเอียดเพิ่มเติม: ${_moredetail.value}`
+        Swal.fire({
+          title: 'กำลังส่งข้อความ',
+          didOpen: () => { Swal.showLoading() },
+        })
 
-        // fetch(`https://weak-lime-raven-suit.cyclic.app/noti/${message}`).then(() => {
-        //   onSuccess(_name, _phonenumber, _moredetail, _cartype)
-        // }).catch((e) => {
-        //   onSuccess(_name, _phonenumber, _moredetail, _cartype)
-        // })
+        fetch(`https://weak-lime-raven-suit.cyclic.app/noti/${message}`).then(() => {
+          onSuccess(_name, _phonenumber, _moredetail, _cartype)
+        }).catch((e) => {
+          onSuccess(_name, _phonenumber, _moredetail, _cartype)
+        })
       }
     })
 
