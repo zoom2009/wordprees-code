@@ -1,3 +1,349 @@
+<style>
+  .fu-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    padding-bottom: 30px;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: -30px;
+    margin-top: -30px;
+  }
+
+  .fu-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Graukarte.svg/1920px-Graukarte.svg.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 100%;
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    z-index: 0;
+    /* box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.4); */
+  }
+
+  .fu-mainbox {
+    z-index: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+  }
+
+  .fu-box {
+    z-index: 0;
+    width: 95%;
+    margin-right: 2.5%;
+    max-width: 560px;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    min-height: 360px;
+    box-shadow: 0px 2px 2px 0px #777;
+    position: relative;
+    background-color: white;
+    align-self: flex-end;
+    padding-bottom: 30px;
+    /* padding: 15px; */
+    /* margin: 0 25px; */
+  }
+
+  .fu-select {
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1"><g id="surface1"><path style="fill: rgb(80, 80, 80); stroke:none;fill-rule:nonzero;fill-opacity:1;" d="M 12 15.5 C 11.734375 15.5 11.480469 15.398438 11.289062 15.210938 L 7.289062 11.210938 C 6.898438 10.816406 6.898438 10.183594 7.289062 9.789062 C 7.683594 9.398438 8.316406 9.398438 8.710938 9.789062 L 12 13.101562 L 15.300781 9.921875 C 15.550781 9.640625 15.9375 9.527344 16.300781 9.621094 C 16.660156 9.71875 16.941406 10.007812 17.019531 10.375 C 17.101562 10.742188 16.96875 11.121094 16.679688 11.359375 L 12.679688 15.21875 C 12.496094 15.394531 12.253906 15.496094 12 15.5 Z M 12 15.5 "/></g></svg>') no-repeat right white;
+    -webkit-appearance: none;
+    appearance: none;
+    background-position: right 6px center;
+    width: 90%;
+    margin-top: 10px;
+    padding: 0 8px;
+    height: 55px;
+    border-radius: 10px;
+    box-sizing: border-box;
+    border: 3px solid #ccc;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
+    margin-left: 5%;
+    font-weight: 400;
+    font-size: 14px;
+    font-family: 'Kanit', sans-serif;
+    margin-top: -10px
+  }
+
+  .fu-select:invalid {
+    color: #777 !important;
+  }
+
+  .fu-select:focus {
+    border: 3px solid #f39c12;
+  }
+
+  .fu-button {
+    cursor: pointer;
+    margin-top: 30px;
+    padding: 16px 20px;
+    font-weight: 400;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 300px;
+    background-color: rgba(243, 156, 18, 0.4);
+    align-self: center;
+    color: white;
+    font-family: 'Kanit', sans-serif;
+  }
+
+  .swal2-popup {
+    font-family: 'Kanit', sans-serif !important;
+  }
+
+  .fu-select-label {
+    padding: 12px 21px;
+    background-color: white;
+    color: black;
+    border-top-left-radius: 22px;
+    border-bottom-left-radius: 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    font-family: 'Kanit', sans-serif !important;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  @media screen and (max-width: 600px) {
+    .fu-box-wrapper {
+      width: 98%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: flex-start;
+    }
+
+    .fu-select-label-2 {
+      display: inline;
+      border-bottom-left-radius: 0;
+      border-top-right-radius: 22px;
+      margin-left: -6px;
+
+    }
+
+    .fu-select-label-2:first-child {
+      margin-left: 36px;
+    }
+
+    .fu-titlebox {
+      width: 100%;
+      max-width: 560px;
+      line-height: 42px;
+      margin-right: calc(2.5% + 20px);
+    }
+
+    .fu-title-1 {
+      font-weight: bold;
+      font-size: 32px;
+      color: #e67e22;
+      padding: 0;
+      margin: 0;
+      font-family: 'Kanit', sans-serif;
+      margin-bottom: 8px;
+      text-align: end;
+    }
+
+    .fu-title-2 {
+      font-weight: bold;
+      font-size: 40px;
+      color: #333;
+      padding: 0;
+      margin: 0;
+      font-family: 'Kanit', sans-serif;
+      text-align: end;
+    }
+
+    .fu-minutes {
+      font-size: 85px;
+      color: #e67e22;
+    }
+
+    .fu-form-title {
+      font-size: 20px;
+      font-family: 'Kanit', sans-serif;
+      font-weight: 500;
+      text-align: center;
+      padding: 0;
+      margin: 10px 0 0 0;
+    }
+
+    .fu-form-title-2 {
+      font-size: 18px;
+      font-family: 'Kanit', sans-serif;
+      font-weight: 400;
+      text-align: center;
+      padding: 0;
+      margin: 0;
+    }
+
+    .fu-form-container {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      margin-top: -10px;
+    }
+
+    .fu-half {
+      display: flex;
+      flex: 1;
+      justify-items: center;
+    }
+
+    .fu-label {
+      margin-left: calc(7% - 10px);
+      height: 10px;
+      font-weight: 400;
+      font-family: 'Kanit', sans-serif;
+      margin-left: 5%;
+    }
+
+    .fu-input {
+      width: 90%;
+      margin-top: 10px;
+      margin-left: calc(7% - 10px);
+      padding: 14px 5px;
+      border-radius: 10px;
+      /* box-shadow: red; */
+      box-sizing: border-box;
+      border: 3px solid #ccc;
+      -webkit-transition: 0.5s;
+      transition: 0.5s;
+      outline: none;
+      font-size: 14px;
+      font-family: 'Kanit', sans-serif;
+      margin-top: -10px
+    }
+  }
+
+  @media screen and (min-width: 601px) {
+    .fu-box-wrapper {
+      width: 98%;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      align-items: flex-start;
+    }
+
+    .fu-select-label-2 {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .fu-titlebox {
+      width: 100%;
+      max-width: 580px;
+      line-height: 54px;
+      margin-right: calc(2.5% + 20px);
+    }
+
+    .fu-title-1 {
+      font-weight: bold;
+      font-size: 52px;
+      color: #e67e22;
+      padding: 0;
+      margin: 0;
+      font-family: 'Kanit', sans-serif;
+      margin-bottom: 20px;
+      text-align: end;
+    }
+
+    .fu-title-2 {
+      font-weight: bold;
+      font-size: 60px;
+      color: #333;
+      padding: 0;
+      margin: 0;
+      font-family: 'Kanit', sans-serif;
+      text-align: end;
+    }
+
+    .fu-minutes {
+      font-size: 130px;
+      color: #e67e22;
+    }
+
+    .fu-form-title {
+      font-size: 30px;
+      font-family: 'Kanit', sans-serif;
+      font-weight: 500;
+      text-align: center;
+      padding: 0;
+      margin: 25px 0 0 0;
+    }
+
+    .fu-form-title-2 {
+      font-size: 22px;
+      font-family: 'Kanit', sans-serif;
+      font-weight: 400;
+      text-align: center;
+      padding: 0;
+      margin: 0;
+    }
+
+    .fu-form-container {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      width: 100%;
+      margin-top: -10px;
+    }
+
+    .fu-half {
+      display: flex;
+      flex: 1;
+    }
+
+    .fu-label {
+      height: 10px;
+      font-weight: 400;
+      font-family: 'Kanit', sans-serif;
+      margin-left: 5%;
+    }
+
+    .fu-input {
+      width: 90%;
+      margin-top: 10px;
+      padding: 14px 8px;
+      border-radius: 10px;
+      /* box-shadow: red; */
+      box-sizing: border-box;
+      border: 3px solid #ccc;
+      -webkit-transition: 0.5s;
+      transition: 0.5s;
+      outline: none;
+      margin-left: 5%;
+      font-weight: 400;
+      font-size: 14px;
+      font-family: 'Kanit', sans-serif;
+      margin-top: -10px
+    }
+  }
+</style>
+
 <form method="POST" action="<?php echo admin_url('admin-post.php'); ?>">
   <input type="hidden" name="action" value="call_api">
   <div class="fu-container">
