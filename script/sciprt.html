@@ -1,0 +1,171 @@
+<!-- NOTI LINE -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+  // ชื่อระบบ
+  const systemName = 'App รถมือสอง'
+  // สี theme
+  const titleColor1 = "green"
+  const titleColor2 = "red"
+  const formColor1 = "yellow"
+  const formColor2 = "pink"
+  // ข้อความหัวข้อใหญ่
+  const textTitle1 = "ภายใน1"
+  const textTitle2 = "101"
+  const textTitle3 = "นาที1"
+  const textTitle4 = "ขายรถ1"
+  const textTitle5 = "&1"
+  const textTitle6 = "ประเมินราคา1"
+  // ข้อความ tab ซ้ายมือ
+  const textLeft1 = "ขาย1"
+  const textLeft2 = "ซื้อ1"
+  // ข้อความหัวข้อ form
+  const textForm1 = "แพลตฟอร์มตัวกลางซื้อ-ขายรถมือสอง1"
+  const textForm2 = "ประเมินราคา ฟรี! ได้ราคาสูง1"
+  // รูปพื้นหลัง
+  const img = "https://mzautocar.com/wp-content/uploads/bg-scaled-1.jpg"
+
+  document.getElementsByClassName('fu-bg')[0].style.backgroundImage = `url("${img}")`
+  document.getElementsByClassName('fu-title-2')[0].style.color = titleColor1
+  document.getElementsByClassName('fu-title-1')[0].style.color = titleColor2
+  document.getElementById('fu-t-2').style.color = titleColor2
+  document.getElementById('fu-and').style.color = titleColor1
+  document.getElementById('fu-button').style.backgroundColor = 'red'
+  document.getElementsByClassName('fu-form-title')[0].style.color = formColor1
+  document.getElementsByClassName('fu-form-title-2')[0].style.color = formColor1
+  const withBorder = (e) => {
+    e.addEventListener("focus", () => { e.style.border = `3px solid ${titleColor2}` })
+    e.addEventListener("blur", () => { e.style.border = `3px solid #ccc` })
+  }
+  withBorder(document.getElementById('fu-name'))
+  withBorder(document.getElementById('fu-phonenumber'))
+  withBorder(document.getElementById('fu-select'))
+  withBorder(document.getElementById('fu-moredetail'))
+
+  // text
+  document.getElementById('fu-t-1').textContent = textTitle1
+  document.getElementById('fu-t-2').textContent = textTitle2
+  document.getElementById('fu-t-3').textContent = textTitle3
+  document.getElementById('fu-t-4').textContent = textTitle4
+  document.getElementById('fu-and').textContent = textTitle5
+  document.getElementById('fu-t-5').textContent = textTitle6
+  document.getElementById('fu-select-sell').textContent = textLeft1
+  document.getElementById('fu-select-buy').textContent = textLeft2
+  document.getElementById('fu-t-6').textContent = textForm1
+  document.getElementById('fu-t-7').textContent = textForm2
+
+  const label = document.getElementsByClassName('fu-label')
+  for (let i = 0; i < label.length; i++) {
+    label[i].style.color = formColor1
+  }
+
+  // --- function ----
+  var actionTypeSelected = textLeft2
+  const sellActionType = document.getElementById('fu-select-sell')
+  const buyActionType = document.getElementById('fu-select-buy')
+
+  sellActionType.addEventListener('click', () => {
+    sellActionType.style.backgroundColor = titleColor2
+    sellActionType.style.color = 'white'
+    buyActionType.style.backgroundColor = 'white'
+    buyActionType.style.color = titleColor2
+    actionTypeSelected = textLeft1
+  })
+
+  buyActionType.addEventListener('click', () => {
+    buyActionType.style.backgroundColor = titleColor2
+    buyActionType.style.color = 'white'
+    sellActionType.style.backgroundColor = 'white'
+    sellActionType.style.color = titleColor2
+    actionTypeSelected = textLeft2
+  })
+
+  sellActionType.style.backgroundColor = 'white'
+  sellActionType.style.color = titleColor2
+  buyActionType.style.backgroundColor = titleColor2
+  buyActionType.style.color = 'white'
+
+  const firstnameAndLastname = () => document.getElementById('fu-name')
+  const phonenumber = () => document.getElementById('fu-phonenumber')
+  const cartype = () => document.getElementById('fu-select')
+  const moredetail = () => document.getElementById('fu-moredetail')
+  const button = () => document.getElementById('fu-button')
+
+  const validate = () => {
+    try {
+      const _name = firstnameAndLastname().value
+      const _phonenumber = phonenumber().value
+      const _cartype = cartype().value
+      const _moredetail = moredetail().value
+      if (
+        !!(_name || '') &&
+        (_phonenumber || '').length >= 10 &&
+        !!(_cartype || '') &&
+        !!(_moredetail || '')
+      ) {
+        const b = button()
+        b.style.opacity = 1
+        b.style.cursor = 'pointer'
+      } else {
+        b.style.opacity = 0.4
+        b.style.cursor = 'default'
+      }
+    } catch (e) {
+      console.log('some form error')
+    }
+  }
+
+  const b = button()
+  const fn_ln = firstnameAndLastname()
+  const pn = phonenumber()
+  const ct = cartype()
+  const md = moredetail()
+
+  fn_ln.addEventListener('input', () => validate())
+  pn.addEventListener('input', () => validate())
+  ct.addEventListener('input', () => validate())
+  md.addEventListener('input', () => validate())
+
+  const onSuccess = (a, b, c, d) => {
+    a.value = ''
+    b.value = ''
+    c.value = ''
+    d.selectedIndex = 0
+    Swal.fire({
+      icon: 'success',
+      title: 'ส่งข้อความสำเร็จ',
+      text: 'ทีม Support จะรีบติดต่อคุณกลับภายใน 10 นาที',
+      confirmButtonColor: '#f39c12',
+    })
+  }
+
+  b.addEventListener('click', () => {
+    const _name = firstnameAndLastname()
+    const _phonenumber = phonenumber()
+    const _cartype = cartype()
+    const _moredetail = moredetail()
+
+    if (
+      !!(_name.value || '') &&
+      (_phonenumber.value || '').length >= 10 &&
+      !!(_cartype.value || '') &&
+      !!(_moredetail.value || '')
+    ) {
+      const message = `++ระบบ: ${systemName}++ชื่อ: ${_name.value}++ความต้องการ: ${actionTypeSelected}++โทร: ${_phonenumber.value}++รุ่นรถยนต์: ${_cartype.value}++รายละเอียดเพิ่มเติม: ${_moredetail.value}`
+      Swal.fire({
+        title: 'กำลังส่งข้อความ',
+        didOpen: () => { Swal.showLoading() },
+      })
+
+      fetch(`https://weak-lime-raven-suit.cyclic.app/noti/${message}`).then(() => {
+        onSuccess(_name, _phonenumber, _moredetail, _cartype)
+      }).catch((e) => {
+        onSuccess(_name, _phonenumber, _moredetail, _cartype)
+      })
+    }
+  })
+
+  setTimeout(() => {
+    validate()
+  }, 500)
+</script>
+<!-- NOTI LINE -->
