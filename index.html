@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,39 +13,47 @@
 
   <style>
     .fu-container {
+      width: 100%;
+      height: 100%;
       position: relative;
-      width: 100vw;
-      height: 90vh;
       display: flex;
+      padding-bottom: 30px;
       flex-direction: column;
       justify-content: center;
+      margin-bottom: -30px;
+      margin-top: -30px;
     }
+
     .fu-bg {
       position: absolute;
       top: 0;
       left: 0;
       right: 0;
       bottom: 0;
-      background-image: url('./bg.jpg');
+      background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Graukarte.svg/1920px-Graukarte.svg.png');
       background-repeat: no-repeat;
       background-attachment: fixed;
       background-size: cover;
       background-position: center;
-      width: 100vw;
-      height: 90vh;
+      width: 100%;
+      height: 100%;
       -webkit-transform: scaleX(-1);
       transform: scaleX(-1);
-      z-index: -1;
+      z-index: 0;
       /* box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.4); */
     }
+
     .fu-mainbox {
+      z-index: 0;
       width: 100%;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
       align-items: flex-end;
     }
+
     .fu-box {
+      z-index: 0;
       width: 95%;
       margin-right: 2.5%;
       max-width: 560px;
@@ -60,6 +69,7 @@
       /* padding: 15px; */
       /* margin: 0 25px; */
     }
+
     .fu-select {
       background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1"><g id="surface1"><path style="fill: rgb(80, 80, 80); stroke:none;fill-rule:nonzero;fill-opacity:1;" d="M 12 15.5 C 11.734375 15.5 11.480469 15.398438 11.289062 15.210938 L 7.289062 11.210938 C 6.898438 10.816406 6.898438 10.183594 7.289062 9.789062 C 7.683594 9.398438 8.316406 9.398438 8.710938 9.789062 L 12 13.101562 L 15.300781 9.921875 C 15.550781 9.640625 15.9375 9.527344 16.300781 9.621094 C 16.660156 9.71875 16.941406 10.007812 17.019531 10.375 C 17.101562 10.742188 16.96875 11.121094 16.679688 11.359375 L 12.679688 15.21875 C 12.496094 15.394531 12.253906 15.496094 12 15.5 Z M 12 15.5 "/></g></svg>') no-repeat right white;
       -webkit-appearance: none;
@@ -79,13 +89,17 @@
       font-weight: 400;
       font-size: 14px;
       font-family: 'Kanit', sans-serif;
+      margin-top: -10px
     }
+
     .fu-select:invalid {
-      color: #777!important;
+      color: #777 !important;
     }
+
     .fu-select:focus {
       border: 3px solid #f39c12;
     }
+
     .fu-button {
       cursor: pointer;
       margin-top: 30px;
@@ -101,20 +115,60 @@
       color: white;
       font-family: 'Kanit', sans-serif;
     }
+
     .swal2-popup {
-      font-family: 'Kanit', sans-serif!important;
+      font-family: 'Kanit', sans-serif !important;
     }
+
+    .fu-select-label {
+      padding: 12px 21px;
+      background-color: white;
+      color: black;
+      border-top-left-radius: 22px;
+      border-bottom-left-radius: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-size: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      font-family: 'Kanit', sans-serif !important;
+    }
+
     body {
       margin: 0;
       padding: 0;
     }
+
     @media screen and (max-width: 600px) {
+      .fu-box-wrapper {
+        width: 98%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: flex-start;
+      }
+
+      .fu-select-label-2 {
+        display: inline;
+        border-bottom-left-radius: 0;
+        border-top-right-radius: 22px;
+        margin-left: -6px;
+
+      }
+
+      .fu-select-label-2:first-child {
+        margin-left: 36px;
+      }
+
       .fu-titlebox {
         width: 100%;
         max-width: 560px;
         line-height: 42px;
         margin-right: calc(2.5% + 20px);
       }
+
       .fu-title-1 {
         font-weight: bold;
         font-size: 32px;
@@ -125,6 +179,7 @@
         margin-bottom: 8px;
         text-align: end;
       }
+
       .fu-title-2 {
         font-weight: bold;
         font-size: 40px;
@@ -134,10 +189,12 @@
         font-family: 'Kanit', sans-serif;
         text-align: end;
       }
+
       .fu-minutes {
         font-size: 85px;
         color: #e67e22;
       }
+
       .fu-form-title {
         font-size: 20px;
         font-family: 'Kanit', sans-serif;
@@ -146,6 +203,7 @@
         padding: 0;
         margin: 10px 0 0 0;
       }
+
       .fu-form-title-2 {
         font-size: 18px;
         font-family: 'Kanit', sans-serif;
@@ -154,19 +212,28 @@
         padding: 0;
         margin: 0;
       }
+
       .fu-form-container {
         display: flex;
         flex-direction: column;
         width: 100%;
+        margin-top: -10px;
       }
+
       .fu-half {
         display: flex;
         flex: 1;
         justify-items: center;
       }
+
       .fu-label {
         margin-left: calc(7% - 10px);
+        height: 10px;
+        font-weight: 400;
+        font-family: 'Kanit', sans-serif;
+        margin-left: 5%;
       }
+
       .fu-input {
         width: 90%;
         margin-top: 10px;
@@ -181,18 +248,31 @@
         outline: none;
         font-size: 14px;
         font-family: 'Kanit', sans-serif;
-      }
-      .fu-input:focus {
-        border: 3px solid #f39c12;
+        margin-top: -10px
       }
     }
+
     @media screen and (min-width: 601px) {
+      .fu-box-wrapper {
+        width: 98%;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: flex-start;
+      }
+
+      .fu-select-label-2 {
+        display: flex;
+        flex-direction: column;
+      }
+
       .fu-titlebox {
         width: 100%;
         max-width: 580px;
         line-height: 54px;
         margin-right: calc(2.5% + 20px);
       }
+
       .fu-title-1 {
         font-weight: bold;
         font-size: 52px;
@@ -203,6 +283,7 @@
         margin-bottom: 20px;
         text-align: end;
       }
+
       .fu-title-2 {
         font-weight: bold;
         font-size: 60px;
@@ -212,10 +293,12 @@
         font-family: 'Kanit', sans-serif;
         text-align: end;
       }
+
       .fu-minutes {
         font-size: 130px;
         color: #e67e22;
       }
+
       .fu-form-title {
         font-size: 30px;
         font-family: 'Kanit', sans-serif;
@@ -224,6 +307,7 @@
         padding: 0;
         margin: 25px 0 0 0;
       }
+
       .fu-form-title-2 {
         font-size: 22px;
         font-family: 'Kanit', sans-serif;
@@ -232,21 +316,27 @@
         padding: 0;
         margin: 0;
       }
+
       .fu-form-container {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
         width: 100%;
+        margin-top: -10px;
       }
+
       .fu-half {
         display: flex;
         flex: 1;
       }
+
       .fu-label {
+        height: 10px;
         font-weight: 400;
         font-family: 'Kanit', sans-serif;
         margin-left: 5%;
       }
+
       .fu-input {
         width: 90%;
         margin-top: 10px;
@@ -262,76 +352,262 @@
         font-weight: 400;
         font-size: 14px;
         font-family: 'Kanit', sans-serif;
-      }
-      .fu-input:focus {
-        border: 3px solid #f39c12;
+        margin-top: -10px
       }
     }
   </style>
 </head>
+
 <body>
-  <div class="fu-container">
-    <div class="fu-bg"></div>
-    <div class="fu-mainbox">
-      <div class="fu-titlebox">
-        <h2 class="fu-title-2">ภายใน <span class="fu-minutes">10</span> นาที</h2>
-        <h2 class="fu-title-1">ขายรถ <span style="color: #333">&</span> ประเมินราคา</h2>
-      </div>
-      <div class="fu-box">
-        <div style="padding: 0 15px; display: flex; flex-direction: column;">
-          <h3 class="fu-form-title">แพลตฟอร์มตัวกลางซื้อ-ขายรถมือสอง</h3>
-          <h4 class="fu-form-title-2">ประเมินราคา ฟรี! ได้ราคาสูง</h4>
-          <div class="fu-form-container">
-            <div style="margin-top: 24px" class="fu-half">
-              <div style="width: 100%;">
-                <label class="fu-label" for="fu-name">ชื่อ-นามสกุล</label><br />
-                <input class="fu-input" id="fu-name" placeholder="ชื่อ-นามสกุล" />
-              </div>
-            </div>
-            <div style="margin-top: 24px" class="fu-half">
-              <div style="width: 100%;">
-                <label class="fu-label" for="fu-phonenumber">เบอร์โทร</label><br />
-                <input class="fu-input" id="fu-phonenumber" placeholder="เบอร์โทร" onkeypress="return /[0-9]/i.test(event.key)" />
-              </div>
-            </div>
+  <form method="POST" action="<?php echo admin_url('admin-post.php'); ?>">
+    <input type="hidden" name="action" value="call_api">
+    <div class="fu-container">
+      <div class="fu-bg"></div>
+      <div class="fu-mainbox">
+        <div class="fu-titlebox">
+          <h2 class="fu-title-2">
+            <span id="fu-t-1">ภายใน</span>
+            <span id="fu-t-2" class="fu-minutes">10</span>
+            <span id="fu-t-3">นาที</span>
+          </h2>
+          <h2 class="fu-title-1">
+            <span id="fu-t-4">ขายรถ</span>
+            <span id="fu-and" style="color: #333">&amp;</span>
+            <span id="fu-t-5">ประเมินราคา</span>
+          </h2>
+        </div>
+        <div class="fu-box-wrapper">
+          <div style="margin-top: 30px">
+            <div id="fu-select-sell" class="fu-select-label fu-select-label-2">ขาย</div>
+            <div id="fu-select-buy" class="fu-select-label fu-select-label-2">ซื้อ</div>
           </div>
-          <div class="fu-form-container">
-            <div style="margin-top: 24px" class="fu-half">
-              <div style="width: 100%;">
-                <label class="fu-label" for="fu-name">รุ่นรถยนต์</label><br />
-                <select id="fu-select" class="fu-select" required>
-                  <!-- <option disabled>เลือกรุ่นรถยนต์</option> -->
-                  <option value="" disabled selected hidden>เลือกรุ่นรถยนต์</option>
-                  <option value="Ford">Ford</option>
-                  <option value="Honda">Honda</option>
-                  <option value="Isuzu">Isuzu</option>
-                  <option value="Mazda">Mazda</option>
-                  <option value="MG">MG</option>
-                  <option value="Mitsubishi">Mitsubishi</option>
-                  <option value="Nissan">Nissan</option>
-                  <option value="Suzuki">Suzuki</option>
-                  <option value="Tesla">Tesla</option>
-                  <option value="Toyota">Toyota</option>
-                  <option value="อื่นๆ">อื่นๆ</option>
-                </select>
-                <!-- <input class="fu-input" id="fu-name" placeholder="เลือกรุ่นรถยนต์" /> -->
+          <div class="fu-box">
+            <div style="padding: 0 15px; display: flex; flex-direction: column;">
+              <h3 id="fu-t-6" class="fu-form-title">แพลตฟอร์มตัวกลางซื้อ-ขายรถมือสอง</h3>
+              <h4 id="fu-t-7" class="fu-form-title-2">ประเมินราคา ฟรี! ได้ราคาสูง</h4>
+              <div class="fu-form-container">
+                <div style="margin-top: 24px" class="fu-half">
+                  <div style="width: 100%;">
+                    <label class="fu-label" for="fu-name">ชื่อ-นามสกุล</label><br>
+                    <input name="fu-name" class="fu-input" id="fu-name" placeholder="ชื่อ-นามสกุล">
+                  </div>
+                </div>
+                <div style="margin-top: 24px" class="fu-half">
+                  <div style="width: 100%;">
+                    <label class="fu-label" for="fu-phonenumber">เบอร์โทร</label><br>
+                    <input name="fu-phonenumber" class="fu-input" id="fu-phonenumber" inputmode="numeric"
+                      placeholder="เบอร์โทร" onkeypress="return /[0-9]/i.test(event.key)">
+                  </div>
+                </div>
+              </div>
+              <div class="fu-form-container">
+                <div style="margin-top: 24px" class="fu-half">
+                  <div style="width: 100%;">
+                    <label class="fu-label" for="fu-name">รุ่นรถยนต์</label><br>
+                    <select name="fu-select" id="fu-select" class="fu-input fu-select" required="">
+                      <!-- <option disabled>เลือกรุ่นรถยนต์</option> -->
+                      <option value="" disabled="" selected="" hidden="">เลือกรุ่นรถยนต์</option>
+                      <option value="Ford">Ford</option>
+                      <option value="Honda">Honda</option>
+                      <option value="Isuzu">Isuzu</option>
+                      <option value="Mazda">Mazda</option>
+                      <option value="MG">MG</option>
+                      <option value="Mitsubishi">Mitsubishi</option>
+                      <option value="Nissan">Nissan</option>
+                      <option value="Suzuki">Suzuki</option>
+                      <option value="Tesla">Tesla</option>
+                      <option value="Toyota">Toyota</option>
+                      <option value="อื่นๆ">อื่นๆ</option>
+                    </select>
+                    <!-- <input class="fu-input" id="fu-name" placeholder="เลือกรุ่นรถยนต์" /> -->
+                  </div>
+                </div>
+                <div style="margin-top: 24px" class="fu-half">
+                  <div style="width: 100%;">
+                    <label class="fu-label" for="fu-moredetail">รายละเอียดเพิ่มเติม</label><br>
+                    <input name="fu-moredetail" class="fu-input" id="fu-moredetail" placeholder="รายละเอียดเพิ่มเติม">
+                  </div>
+                </div>
+              </div>
+              <div id="fu-button" class="fu-button">
+                ประเมินราคา ฟรี!
               </div>
             </div>
-            <div style="margin-top: 24px" class="fu-half">
-              <div style="width: 100%;">
-                <label class="fu-label" for="fu-moredetail">รายละเอียดเพิ่มเติม</label><br />
-                <input class="fu-input" id="fu-moredetail" placeholder="รายละเอียดเพิ่มเติม" />
-              </div>
-            </div>
-          </div>
-          <div id="fu-button" class="fu-button">
-            ประเมินราคา ฟรี!
           </div>
         </div>
       </div>
     </div>
-  </div>
+  </form>
+  <!-- NOTI LINE -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <script src="./script.js"></script>
+  <script>
+    // สี theme
+    const titleColor1 = "green"
+    const titleColor2 = "red"
+    const formColor1 = "yellow"
+    const formColor2 = "pink"
+    // ข้อความหัวข้อใหญ่
+    const textTitle1 = "ภายใน1"
+    const textTitle2 = "101"
+    const textTitle3 = "นาที1"
+    const textTitle4 = "ขายรถ1"
+    const textTitle5 = "&1"
+    const textTitle6 = "ประเมินราคา1"
+    // ข้อความ tab ซ้ายมือ
+    const textLeft1 = "ขาย1"
+    const textLeft2 = "ซื้อ1"
+    // ข้อความหัวข้อ form
+    const textForm1 = "แพลตฟอร์มตัวกลางซื้อ-ขายรถมือสอง1"
+    const textForm2 = "ประเมินราคา ฟรี! ได้ราคาสูง1"
+    // รูปพื้นหลัง
+    const img = "https://mzautocar.com/wp-content/uploads/bg-scaled-1.jpg"
+
+    document.getElementsByClassName('fu-bg')[0].style.backgroundImage = `url("${img}")`
+    document.getElementsByClassName('fu-title-2')[0].style.color = titleColor1
+    document.getElementsByClassName('fu-title-1')[0].style.color = titleColor2
+    document.getElementById('fu-t-2').style.color = titleColor2
+    document.getElementById('fu-and').style.color = titleColor1
+    document.getElementById('fu-button').style.backgroundColor = 'red'
+    document.getElementsByClassName('fu-form-title')[0].style.color = formColor1
+    document.getElementsByClassName('fu-form-title-2')[0].style.color = formColor1
+    const withBorder = (e) => {
+      e.addEventListener("focus", () => { e.style.border = `3px solid ${titleColor2}` })
+      e.addEventListener("blur", () => { e.style.border = `3px solid #ccc` })
+    }
+    withBorder(document.getElementById('fu-name'))
+    withBorder(document.getElementById('fu-phonenumber'))
+    withBorder(document.getElementById('fu-select'))
+    withBorder(document.getElementById('fu-moredetail'))
+
+    // text
+    document.getElementById('fu-t-1').textContent = textTitle1
+    document.getElementById('fu-t-2').textContent = textTitle2
+    document.getElementById('fu-t-3').textContent = textTitle3
+    document.getElementById('fu-t-4').textContent = textTitle4
+    document.getElementById('fu-and').textContent = textTitle5
+    document.getElementById('fu-t-5').textContent = textTitle6
+    document.getElementById('fu-select-sell').textContent = textLeft1
+    document.getElementById('fu-select-buy').textContent = textLeft2
+    document.getElementById('fu-t-6').textContent = textForm1
+    document.getElementById('fu-t-7').textContent = textForm2
+
+    const label = document.getElementsByClassName('fu-label')
+    for (let i = 0; i < label.length; i++) {
+      label[i].style.color = formColor1
+    }
+
+    // --- function ----
+    var actionTypeSelected = textLeft2
+    const sellActionType = document.getElementById('fu-select-sell')
+    const buyActionType = document.getElementById('fu-select-buy')
+
+    sellActionType.addEventListener('click', () => {
+      sellActionType.style.backgroundColor = titleColor2
+      sellActionType.style.color = 'white'
+      buyActionType.style.backgroundColor = 'white'
+      buyActionType.style.color = titleColor2
+      actionTypeSelected = textLeft1
+    })
+
+    buyActionType.addEventListener('click', () => {
+      buyActionType.style.backgroundColor = titleColor2
+      buyActionType.style.color = 'white'
+      sellActionType.style.backgroundColor = 'white'
+      sellActionType.style.color = titleColor2
+      actionTypeSelected = textLeft2
+    })
+
+    sellActionType.style.backgroundColor = 'white'
+    sellActionType.style.color = titleColor2
+    buyActionType.style.backgroundColor = titleColor2
+    buyActionType.style.color = 'white'
+
+    const firstnameAndLastname = () => document.getElementById('fu-name')
+    const phonenumber = () => document.getElementById('fu-phonenumber')
+    const cartype = () => document.getElementById('fu-select')
+    const moredetail = () => document.getElementById('fu-moredetail')
+    const button = () => document.getElementById('fu-button')
+
+    const validate = () => {
+      try {
+        const _name = firstnameAndLastname().value
+        const _phonenumber = phonenumber().value
+        const _cartype = cartype().value
+        const _moredetail = moredetail().value
+        if (
+          !!(_name || '') &&
+          (_phonenumber || '').length >= 10 &&
+          !!(_cartype || '') &&
+          !!(_moredetail || '')
+        ) {
+          const b = button()
+          b.style.opacity = 1
+          b.style.cursor = 'pointer'
+        } else {
+          b.style.opacity = 0.4
+          b.style.cursor = 'default'
+        }
+      } catch (e) {
+        console.log('some form error')
+      }
+    }
+
+    const b = button()
+    const fn_ln = firstnameAndLastname()
+    const pn = phonenumber()
+    const ct = cartype()
+    const md = moredetail()
+
+    fn_ln.addEventListener('input', () => validate())
+    pn.addEventListener('input', () => validate())
+    ct.addEventListener('input', () => validate())
+    md.addEventListener('input', () => validate())
+
+    const onSuccess = (a, b, c, d) => {
+      a.value = ''
+      b.value = ''
+      c.value = ''
+      d.selectedIndex = 0
+      Swal.fire({
+        icon: 'success',
+        title: 'ส่งข้อความสำเร็จ',
+        text: 'ทีม Support จะรีบติดต่อคุณกลับภายใน 10 นาที',
+        confirmButtonColor: '#f39c12',
+      })
+    }
+
+    b.addEventListener('click', () => {
+      const _name = firstnameAndLastname()
+      const _phonenumber = phonenumber()
+      const _cartype = cartype()
+      const _moredetail = moredetail()
+
+      if (
+        !!(_name.value || '') &&
+        (_phonenumber.value || '').length >= 10 &&
+        !!(_cartype.value || '') &&
+        !!(_moredetail.value || '')
+      ) {
+        const message = `++ชื่อ: ${_name.value}++ความต้องการ: ${actionTypeSelected}++โทร: ${_phonenumber.value}++รุ่นรถยนต์: ${_cartype.value}++รายละเอียดเพิ่มเติม: ${_moredetail.value}`
+        alert('success')
+        // Swal.fire({
+        //   title: 'กำลังส่งข้อความ',
+        //   didOpen: () => { Swal.showLoading() },
+        // })
+
+        // fetch(`https://weak-lime-raven-suit.cyclic.app/noti/${message}`).then(() => {
+        //   onSuccess(_name, _phonenumber, _moredetail, _cartype)
+        // }).catch((e) => {
+        //   onSuccess(_name, _phonenumber, _moredetail, _cartype)
+        // })
+      }
+    })
+
+    setTimeout(() => {
+      validate()
+    }, 500)
+  </script>
+  <!-- NOTI LINE -->
 </body>
+
 </html>
